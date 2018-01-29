@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevUtils.ETWIMBA.Build</name>
+    </assembly>
+    <members>
+        <member name="T:DevUtils.ETWIMBA.Build.ManifestBuilder">
+            <summary>
+            Manifest builder.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.ManifestBuilder.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.Collections.Generic.IEnumerable{System.Type},System.String)">
+            <summary>
+            Enumerates generate in this collection.
+            </summary>
+            <param name="eventSourcesTypes"> Type of the event source. </param>
+            <param name="countSourcesTypes"></param>
+            <param name="outputFileName">		 Filename of the output file. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.ManifestBuilder.Build">
+            <summary>
+            Builds this object.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.ManifestBuilder.GetStringRef(System.String)">
+            <summary>
+            Gets string reference.
+            </summary>
+            <param name="text"> The text. </param>
+            <returns>
+            The string reference.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.ManifestBuilder.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.AppDomainIsolatedTask2">
+            <summary>
+            Application domain isolated task 2.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.AppDomainIsolatedTask2.Execute">
+            <summary>
+            Runs the task.
+            </summary>
+            <returns>
+            true if successful; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.AppDomainIsolatedTask2.Execute2">
+            <summary>
+            Executes the 2 operation.
+            </summary>
+            <returns>
+            true if it succeeds, false if it fails.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.AppDomainIsolatedTask2.References">
+            <summary>
+            Gets or sets the items from which the compiler will import public type information.
+            </summary>
+            <returns>The items from which the compiler will import public type information.</returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.BaseTask">
+            <summary>
+            Base task.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBACTRPP">
+            <summary>
+            An imbactrpp.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBAToolTask">
+            <summary>
+            Imba tool task.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAToolTask.Source">
+            <summary>
+            Gets or sets source for the.
+            </summary>
+            <value>
+            The source.
+            </value>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBACTRPP.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBACTRPP.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBACTRPP.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBAGenerateManifest">
+            <summary>
+            Imba generate manifests files.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAGenerateManifest.Execute2">
+            <summary>
+            Runs the task.
+            </summary>
+            <returns>
+            true if successful; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAGenerateManifest.InputAssembly">
+            <summary>
+            Gets or sets the input assembly.
+            </summary>
+            <value>
+            The input assembly.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAGenerateManifest.Providers">
+            <summary>
+            Gets or sets the event sources.
+            </summary>
+            <value>
+            The event sources.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAGenerateManifest.ManifestFile">
+            <summary>
+            Gets or sets the event sources.
+            </summary>
+            <value>
+            The event sources.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBALink">
+            <summary>
+            Imba link.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBALink.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBALink.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBALink.Files">
+            <summary>
+            Gets or sets source for the.
+            </summary>
+            <value>
+            The source.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBALink.Out">
+            <summary>
+            Gets or sets the out.
+            </summary>
+            <value>
+            The out.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBALink.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBAFindProviders">
+            <summary>
+            Find event sources.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAFindProviders.Execute2">
+            <summary>
+            When overridden in a derived class, executes the task.
+            </summary>
+            <returns>
+            true if the task successfully executed; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAFindProviders.InputAssembly">
+            <summary>
+            Gets or sets the input assembly.
+            </summary>
+            <value>
+            The input assembly.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAFindProviders.Providers">
+            <summary>
+            Gets or sets the event sources.
+            </summary>
+            <value>
+            The event sources.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBALodctr">
+            <summary>
+            An imba lodctr.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBALodctr.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBALodctr.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBALodctr.HandleTaskExecutionErrors">
+            <summary>
+            Handles execution errors raised by the executable file.
+            </summary>
+            <returns>
+            true if the method runs successfully; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBALodctr.Manifest">
+            <summary>
+            Gets or sets a list of counters.
+            </summary>
+            <value>
+            The total number of er manifest.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBALodctr.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBAMc">
+            <summary>
+            Mc.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAMc.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAMc.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAMc.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBARc">
+            <summary>
+            Imba rectangle.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBARc.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBARc.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBARc.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBAUnlodctr">
+            <summary>
+            An imba unlodctr.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAUnlodctr.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAUnlodctr.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAUnlodctr.HandleTaskExecutionErrors">
+            <summary>
+            Handles execution errors raised by the executable file.
+            </summary>
+            <returns>
+            true if the method runs successfully; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAUnlodctr.Manifest">
+            <summary>
+            Gets or sets the manifest.
+            </summary>
+            <value>
+            The manifest.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAUnlodctr.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil">
+            <summary>
+            Imba wevtutil.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable
+            file.
+            </summary>
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.HandleTaskExecutionErrors">
+            <summary>
+            Handles execution errors raised by the executable file.
+            </summary>
+            <returns>
+            true if the method runs successfully; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.ResourcesFile">
+            <summary>
+            Gets or sets the resources file.
+            </summary>
+            <value>
+            The resources file.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.MessagesFile">
+            <summary>
+            Gets or sets the messages file.
+            </summary>
+            <value>
+            The messages file.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.Uninstall">
+            <summary>
+            Gets or sets a value indicating whether the uninstall.
+            </summary>
+            <value>
+            true if uninstall, false if not.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Build.Tasks.IMBAWevtutil.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            <returns>
+            The name of the executable file to run.
+            </returns>
+        </member>
+    </members>
+</doc>

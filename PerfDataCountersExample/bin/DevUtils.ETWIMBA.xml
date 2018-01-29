@@ -1,0 +1,1475 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevUtils.ETWIMBA</name>
+    </assembly>
+    <members>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate">
+            <summary> A counter aggregate. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate.None">
+            <summary> An enum constant representing the none option. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate.Max">
+            <summary> The maximum counter value is returned. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate.Min">
+            <summary> The minimum counter value is returned. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate.Avg">
+            <summary> The average counter value is returned. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate.Sum">
+            <summary> The sum of the counter values is returned. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAggregate.Undefined">
+            <summary> Do not aggregate this counter. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute">
+            <summary> Lists the unique attributes that specify how the counter data is displayed in a consumer application. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.#ctor(DevUtils.ETWIMBA.Diagnostics.Counters.CounterType)">
+            <summary> Constructor. </summary>
+            <param name="type"> The type. </param>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.Uri">
+            <summary> A unique uniform resource identifier that lets users retrieve counter values from any location. </summary>
+            <value> The URI. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.BaseId">
+             <summary> The identifier of another counter within the same counter set, whose value is used to calculate this counter's value. 
+             The following counter types require a base counter:
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageTimer"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageBase"/> base counter. 
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageBulk"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageBase"/> base counter.
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiTimerInv"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiBase"/> base counter.
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfLargeRawFraction"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfLargeRawBase"/> base counter.
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfPrecision100NSTimer"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfLargeRawBase"/> base counter.
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawFraction"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawBase"/>PERF_RAW_BASE base counter.
+             <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfSampleFraction"/> Requires the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfSampleBase"/> base counter.</summary>
+            <value> The identifier of the base. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.Name">
+            <summary> The name of the counter. The name must be unique and less than 1,024 characters. 
+            The name is case-sensitive. 
+            You do not have to specify this attribute if the counter includes the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.NoDisplay"/> attribute. </summary>
+            <value> The name. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.PerfFreqId">
+            <summary> The identifier of another counter within the same counter set, 
+            whose frequency value is used to calculate this counter's value. 
+            The following counter types require a frequency. 
+            The <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterLargeRawcount"/> counter type contains the time stamp value.
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfElapsedTime"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfObjTimeTimer"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterObjTimeQueuelenType"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterObjTimeQueuelenType"/> </summary>
+            <value> The identifier of the performance frequency. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.PerfTimeId">
+            <summary> The identifier of another counter within the same counter set, 
+            whose time stamp value is used to calculate this counter's value. 
+            The following counter types require a time stamp. 
+            The <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterLargeRawcount"/> counter type contains the time stamp value.
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfElapsedTime"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfObjTimeTimer"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfPrecisionObjectTimer"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterObjTimeQueuelenType"/>
+            </summary>
+            <value> The identifier of the performance time. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.Description">
+            <summary> A short description of the counter. 
+            You do not have to specify this attribute if the counter includes the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.NoDisplay"/> attribute. </summary>
+            <value> The description. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.DefaultScale">
+            <summary> The scale factor to apply to the counter value (factor * counter value). 
+            The default is zero if no scale is applied. 
+            Valid values range from –10 to 10 (0.0000000001 to 1000000000). 
+            If this value is zero, the scale value is 1; 
+            if this value is 1, the scale value is 10; 
+            if this value is –1, the scale value is .10; and so on. </summary>
+            <value> The default scale. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.Type">
+            <summary> The name of the counter type. 
+            For possible values, see the above syntax block. 
+            For details of each type, see Counter Types in the Windows 2003 Deployment Guide. </summary>
+            <value> The type. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.MultiCounterId">
+            <summary> The identifier of another counter within the same counter set, whose multiplier value is used to calculate this counter's value. 
+            The following counter types require a multiplier value. 
+            The referenced counter must be of type <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterRawcount"/>.
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiTimer"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiTimerInv"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecMultiTimer"/>
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecMultiTimerInv"/> </summary>
+            <value> The identifier of the multi counter. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.Aggregate">
+            <summary> The aggregation function to apply if the instances attribute of counterSet is <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.GlobalAggregate"/>,
+            <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.MultipleAggregate"/>, or <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.GlobalAggregateHistory"/>. </summary>
+            <value> The aggregate. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttribute.DetailLevel">
+            <summary> Specifies the target audience for the counter details. </summary>
+            <value> The detail level. </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeDisplayAsHexAttribute">
+            <summary> Attribute for counter attribute display as hexadecimal. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeBaseAttribute">
+            <summary> A counter attribute that specifies how the counter data is displayed in a consumer application. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeBaseAttribute.#ctor(DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName)">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeBaseAttribute.Name">
+            <summary> The name of the display attribute to apply. </summary>
+            <value> The name. </value>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeDisplayAsHexAttribute.#ctor">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeDisplayAsRealAttribute">
+            <summary> Attribute for counter attribute display as real. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeDisplayAsRealAttribute.#ctor">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeNoDigitGroupingAttribute">
+            <summary> Attribute for counter attribute no digit grouping. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeNoDigitGroupingAttribute.#ctor">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeNoDisplayAttribute">
+            <summary> Attribute for counter attribute no display. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeNoDisplayAttribute.#ctor">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeReferenceAttribute">
+            <summary> Attribute for counter attribute reference. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeReferenceAttribute.#ctor">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName">
+            <summary> Values that represent CounterAttributeName. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.Reference">
+            <summary> Retrieve the value of the counter by reference as opposed to by value. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.NoDisplay">
+            <summary> Do not display the counter value. 
+            Typically, you use this attribute if the counter's data is used as input for calculating another counter's value. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.NoDigitGrouping">
+            <summary> Consumer or monitoring applications should not use digit separators when displaying counter values. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.DisplayAsHex">
+            <summary> Consumer or monitoring applications should display the counter value as a hexadecimal, instead of the default integer value. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterAttributeName.DisplayAsReal">
+            <summary> Consumer or monitoring applications should display the counter value as a real number, instead of the default integer value. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterDetailLevel">
+            <summary> Values that represent CounterDetailLevel. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterDetailLevel.Standard">
+            <summary> Display details about the counter that a typical user would understand. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterDetailLevel.Advanced">
+            <summary> Display details about the counter that only an advanced user would understand. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSet`1">
+            <summary>Defines a set of logical counters.</summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSet`1.#ctor">
+            <summary> Default constructor. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSet`1.CreateInstance(System.String)">
+            <summary> Creates an instance. </summary>
+            <param name="name" type="string"> The name. </param>
+            <returns> The new instance. </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSet`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute">
+            <summary>
+            Attribute for counter set.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute.#ctor(DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances)">
+            <summary> Constructor. </summary>
+            <param name="instances"> The instances. </param>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute.Uri">
+            <summary> A unique uniform resource identifier that lets users access the counters in the counter set from any location. </summary>
+            <value> The URI. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute.Guid">
+            <summary> A GUID that uniquely identifies the counter set. 
+            The counter set registration fails if the GUID is already registered. 
+            To update a counter set that is registered, 
+            you must first uninstall the counter set and then register it again. </summary>
+            <value> The identifier of the unique. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute.Name">
+            <summary> The display name of the counter set. 
+            Must be less than 1,024 characters. 
+            The name is case-sensitive. </summary>
+            <value> The name. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute.Instances">
+            <summary> Determines whether the counter set can contain multiple instances. </summary>
+            <value> The instances. </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetAttribute.Description">
+            <summary> A short description of the counter set. </summary>
+            <value> The description. </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstance`1">
+            <summary> Creates an instance of the logical counters defined in the <see cref="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSet`1"/> class. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstance`1.GetCounter(System.Int32)">
+            <summary> Gets a counter. </summary>
+            <param name="counterId" type="T"> Identifier for the counter. </param>
+            <returns> The counter. </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstance`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstance`1.Item(`0)">
+            <summary> Indexer to get items within this collection using array index syntax. </summary>
+            <param name="counterId" type="int"> Identifier for the counter. </param>
+            <returns> The indexed item. </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstanceExtensions">
+            <summary> A counter set instance extensions. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstanceExtensions.GetCounter``1(System.Diagnostics.PerformanceData.CounterSetInstance,``0)">
+            <summary> A CounterSetInstance extension method that gets a counter. </summary>
+            <typeparam name="T"> Generic type parameter. </typeparam>
+            <param name="setInstance"> The setInstance to act on. </param>
+            <param name="id"> The identifier. </param>
+            <returns> The counter. </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances">
+            <summary> Determines whether the counter set can contain multiple instances. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.Single">
+            <summary> Defines a counter set where only one instance of the counters in the counter set can exist. 
+            Specify this value if the counters provide system-wide measurements, such as physical memory. 
+            This is the default. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.Multiple">
+            <summary> Defines a counter set where multiple instances of the counters in the counter set can exist. 
+            Specify this value if the counters provide per-instance measurements, such as processor time per process. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.GlobalAggregate">
+            <summary> Defines a single instance counter set where the counters in the counter set must be aggregated from various active sources. 
+            For example, you could create a counter set that contains a counter that counts the number of disk reads for a hard disk. 
+            If the computer has three hard disks and a consumer queries for the number of disk reads, 
+            PERFLIB will obtain the number of reads from each disk and sum their individual values. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.MultipleAggregate">
+            <summary> Defines a multiple instance counter set where the counters in the counter set must be aggregated across all instances of that counter. 
+            For example, you could create a counter set for a multi-threaded application that contains a counter that measures thread performance 
+            (each thread would refer to an instance of the counter set). When a consumer queries the total thread execution time counter, 
+            PERFLIB will sum the total thread execution time from each instance. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSetInstances.GlobalAggregateHistory">
+            <summary> Defines a single instance counter set whose counter values are cached for the lifetime of the consumer. 
+            Note that all counters in the counter set are cached. 
+            To cache only specific counters, decorate those counters with the history attribute. 
+            Using the disk read example from globalAggregate, all counter values in the counter set would be cached. 
+            If one disk became unavailable, the last cached value for total bytes read by that disk would still be available to the consumer application. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType">
+            <summary> Values that represent CounterType. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawBase">
+            <summary> This counter type collects the last observed value only. 
+            The value is used as the denominator of a counter that presents a general arithmetic fraction. 
+            This type supports the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawFraction"/> counter type.
+            Generic type           Instantaneous.
+            Formula                None. Uses raw data in factional calculations without displaying an output.
+            Average                SUM (N) / x
+            Example                This type of counter is used to calculate the Disk Queue Length counters.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfSampleBase">
+            <summary> The divisor for a sample, used with the previous counter to form a
+            sampled %.  You must check for >0 before dividing by this! This counter will directly follow the  numerator counter. 
+            It should not be displayed to the user.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageBase">
+            <summary> This counter is used as the base data (denominator) in the computation of time or count averages for the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageBulk"/> and <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageTimer"/> counter types.
+            This counter type collects the last observed value only.
+            Generic type           Instantaneous.
+            Formula                None. This counter uses raw data in factional calculations without displaying an output.
+            Average                SUM (N) / x
+            Example                Counters of this type can be used by the Windows Server 2003 family to calculate the Average Disk Transfer counters.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageBulk">
+            <summary> This counter type shows how many items are processed, on average, during an operation. 
+            Counters of this type display a ratio of the items processed (such as bytes sent) to the number of operations completed. 
+            The ratio is calculated by comparing the number of items processed during the last interval to the number of operations completed during the last interval.
+            Generic type           Average.
+            Formula                (N1 - N0) / (D1 - D0), where the numerator (N) represents the number of items processed during the last sample interval, and the denominator (D) represents the number of operations completed during the last two sample intervals.
+            Average                (Nx - N0) / (Dx - D0)
+            Example                PhysicalDisk\ Avg. Disk Bytes/Transfer
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawFraction">
+            <summary> This counter type shows the ratio of a subset to its set as a percentage. 
+            For example, it compares the number of bytes in use on a disk to the total number of bytes on the disk. 
+            Counters of this type display the current percentage only, not an average over time.
+            Generic type           Instantaneous, Percentage.
+            Formula                (N0 / D0), where the denominator (D) represents a measured attribute, and the numerator (N) represents one component of that attribute.
+            Average                SUM (N / D) /x
+            Example                Paging File\% Usage Peak
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfElapsedTime">
+            <summary> This counter type shows the total time between when the component or process started and the time when this value is calculated. 
+            The variable F represents the number of time units that elapse in one second. 
+            The value of F is factored into the equation so that the result is displayed in seconds.
+            Generic type           Difference.
+            Formula                (D0 - N0) / F, where the denominator (D) represents the current time, the numerator (N) represents the time the object was started, and the variable F represents the number of time units that elapse in one second.
+            Average                (Dx - N0) / F
+            Example                System\System Up Time
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecTimer">
+            <summary> This counter type shows the active time of a component as a percentage of the total elapsed time of the sample interval. 
+            It measures time in units of 100 nanoseconds. 
+            Counters of this type are designed to measure the activity of one component at a time.
+            Generic type           Percentage.
+            Formula                (N1 - N0) / (D1 - D0) x 100, where the denominator (D) represents the total elapsed time of the sample interval, and the numerator (N) represents the portions of the sample interval during which the monitored components were active.
+            Average                (Nx - N0) / (Dx - D0) x 100
+            Example                Processor\ % User Time
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfAverageTimer">
+            <summary> This counter type measures the average time it takes to complete a process or operation. 
+            Counters of this type display a ratio of the total elapsed time of the sample interval to the number of processes or operations completed during that time. 
+            This counter type measures time in ticks of the system clock. The variable F represents the number of ticks per second. 
+            The value of F is factored into the equation so that the result is displayed in seconds.
+            Generic type           Average.
+            Formula                ((N1 - N0) / F) / (D1 - D0), where the numerator (N) represents the number of ticks counted during the last sample interval, the variable F represents the frequency of the ticks, and the denominator (D) represents the number of operations completed during the last sample interval.
+            Average                ((Nx - N0) / F) / (Dx - D0)
+            Example                PhysicalDisk\ Avg. Disk sec/Transfer
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterDelta">
+            <summary> This counter type shows the change in the measured attribute between the two most recent sample intervals.
+            Generic type           Difference.
+            Formula                N1 - N0
+            Average                (Nx - N0) / x
+            Example                There are no counters of this type installed with the Windows Server 2003 family.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterTimer">
+            <summary> The following table shows the most common timer.
+            Element                Value
+            X                      CounterData
+            Y                      PerfTime
+            Time base              PerfFreq
+            Data Size              8 Bytes
+            Display Suffix         %
+            Calculation            100*(X1-X0)/(Y1-Y0) </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfObjTimeTimer">
+            <summary> This 64-bit counter type is a timer that displays in object-specific units.
+            Generic type           Percentage.
+            Formula                (X1-X0) / (Y1-Y0), where the denominator (Y) represents the performance time measurement, and the numerator (X) represents counter data.
+            Average                (X1-X0) / (Y1-Y0)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfLargeRawBase">
+            <summary> This counter type collects the last observed value. 
+            It is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawBase"/> counter type except that it uses larger fields to accomaodate larger values.
+            Generic type           Instantaneous.
+            Formula                None. Uses raw data in factional calculations without displaying an output.
+            Average                SUM (N) / x
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfSampleFraction">
+            <summary> This counter type shows the average ratio of hits to all operations during the last two sample intervals.
+            Generic type           Percentage; Hits %
+            Formula                (N1 - N0) / (D1 - D0), where the numerator (N) represents the number of successful operations during the last sample interval, and the denominator (D) represents the change in the number of all operations (of the type measured) completed during the sample interval.
+            Average                (Nx - N0) / (Dx - D0) (See Note below)
+            Example                Cache\Pin Read Hits %
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfSampleCounter">
+            <summary> This counter type shows the average number of operations completed in one second. 
+            It measures time in units of ticks of the system performance timer. 
+            The variable F represents the number of ticks that occur in one second. 
+            The value of F is factored into the equation so that the result is displayed in seconds.
+            Generic type           Average.
+            Formula                (N1 - N0) / ((D1 - D0) / F), where the numerator (N) represents the number of operations completed, the denominator (D) represents elapsed time in units of ticks of the system performance timer, and the variable F represents the number of ticks that elapse in one second.
+            Average                (Nx - N0) / ((Dx - D0) / F)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterCounter">
+            <summary> The following table shows how PERF_COUNTER_COUNTER tracks the rate of counts. 
+            This is the most common counter. 
+            Element                Value
+            X                      CounterData
+            Y                      PerfTime
+            Time base              PerfFreq
+            Data Size              4 Bytes
+            Display Suffix         /Sec
+            Calculation            (X1-X0)/((Y1-Y0)/TB)</summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecTimerInv">
+            <summary> This counter type shows the average percentage of active time observed during the sample interval. 
+            This is an inverse counter. Inverse counters are calculated by monitoring the percentage of time that the service was inactive and then subtracting that value from 100 percent.
+            Generic type           Percentage.
+            Formula                (1- ((N1 - N0) / (D1 - D0))) x 100, where the denominator (D) represents the total elapsed time of the sample interval, and the numerator (N) represents the time during the interval when the monitored components were inactive.
+            Average                (1- ((Nx - N0) / (Dx - D0))) x 100
+            Example                Processor\ % Processor Time
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterTimerInv">
+            <summary> This is an inverse counter type. Inverse counters measure the time that a component is not active, and derive the active time from that measurement. 
+            Counters of this type display the average percentage of active time observed during sample interval. 
+            The value of these counters is calculated by monitoring the percentage of time that the service was inactive and then subtracting that value from 100 percent. 
+            This counter type is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecTimerInv"/> counter type,
+            except that it measures time in units of ticks of the system performance timer, rather than in 100 nanosecond units.
+            Generic type           Percentage.
+            Formula                (1- ((N1 - N0) / (D1 - D0))) x 100, where the denominator (D) represents the total elapsed time of the sample interval, and the numerator (N) represents the time during the interval when the monitored components were inactive.
+            Average                (1- ((Nx - N0) / (Dx - D0))) x 100
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfLargeRawFraction">
+            <summary> This counter type shows the ratio of a subset to its set as a percentage. 
+            					For example, it compares the number of bytes in use on a disk to the total number of bytes on the disk. 
+            					Counters of this type display the current percentage only, not an average over time. 
+            					It is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfRawFraction"/> counter type, except that it uses larger fields to accommodate larger values. </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiBase">
+            <summary>  Number of instances to which the preceding _MULTI_..._INV counter applies.
+            					 Used as a factor to get the percentage.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterRawcount">
+            <summary> This counter type shows the last observed value only. 
+            Generic type           Instantaneous.
+            Formula                None. Shows raw data as collected.
+            Average                SUM (N) / x
+            Example                Memory\Available Bytes
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterBulkCount">
+            <summary> This counter type shows the average number of operations completed during each second of the sample interval. 
+            Counters of this type measure time in ticks of the system clock. 
+            The variable F represents the number of ticks per second. 
+            The value of F is factored into the equation so that the result is displayed in seconds. 
+            This counter type is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterCounter"/> type, but it uses larger fields to accommodate larger values.
+            Generic type           Difference.
+            Formula                (N1 - N0) / ( (D1 - D0) / F, where the numerator (N) represents the number of operations performed during the last sample interval, the denominator (D) represent the number of ticks elapsed during the last sample interval, and the variable F is the frequency of the ticks.
+            Average                (Nx - N0) / ((Dx - D0)/ F)
+            Example                System\File Read Bytes/sec 
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterLargeDelta">
+            <summary> This counter type shows the change in the measured attribute between the two most recent sample intervals. 
+            It is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterDelta"/> counter type, except that it uses larger fields to accommodate larger values.
+            Generic type           Difference.
+            Formula                N1 - N0
+            Average                (Nx - N0) / x
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecMultiTimer">
+            <summary> This counter type shows the active time of one or more components as a percentage of the total time of the sample interval.
+            It measures time in 100 nanosecond units. This counter type is a multitimer. 
+            Multitimers are designed to monitor more than one instance of a component, such as a processor or disk.
+            Generic type           Percentage.
+            Formula                ((N1 - N0) / (D1 - D0)) x 100 / B, where the denominator (D) represents the total elapsed time of the sample interval, the numerator (N) represents the portions of the sample interval during which the monitored components were active, and the variable B represents the base count for the monitored components.
+            Average                ((Nx - N0) / (Dx - D0) ) x 100 / B
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiTimer">
+            <summary> This counter type is a multitimer. Multitimers collect data from more than one instance of a component, such as a processor or disk. 
+            Counters of this type display the active time of one or more components as a percentage of the total time of the sample interval. 
+            Because the numerator records the active time of components operating simultaneously, the resulting percentage can exceed 100 percent.
+            This counter type differs from <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecMultiTimer"/> in that it measures time in units of ticks of the system performance timer, rather than in 100 nanosecond units.
+            Generic type           Percentage.
+            Formula                ((N1 - N0) / (D1 - D0)) x 100, where the denominator (D) represents the total elapsed time of the sample interval, and the numerator (N) represents the portions of the sample interval during which the monitored components were active. They are multiplied by 100 to display the value as a percentage.
+            Average                (Nx - N0) / (Dx - D0) x 100
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfPrecision100NSTimer">
+            <summary> This counter type shows a value that consists of two counter values: 
+            the count of the elapsed time of the event being monitored, and the "clock" time from a private timer in the same units. 
+            It measures time in 100 nanosecond units. This counter type differs from other counter timers in that the clock tick value 
+            accompanies the counter value eliminating any possible difference due to latency from the function call. 
+            Precision counter types are used when standard system timers are not precise enough for accurate readings.
+            Generic type           Percentage.
+            Formula                N1 - N0 / D1 - D0, where the numerator (N) represents the counter value, and the denominator (D) is the value of the private timer. The private timer has the same frequency as the 100 nanosecond timer.
+            Average                N1 - N0 / D1 - D0
+            Example                PhysicalDisk\% Disk Time
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfPrecisionObjectTimer">
+            <summary> This counter type shows a value that consists of two counter values: the count of the elapsed time of the event being monitored, 
+            and the frequency specified in the PerfFreq field of the object header. 
+            This counter type differs from other counter timers in that the clock tick value accompanies the counter value so as 
+            to eliminate any possible difference due to latency from the function call. Precision counter types are used when standard system timers are not precise enough for accurate readings.
+            Generic type           Percentage.
+            Formula                Nx - N0 / D1 - D0, where the numerator (N) represents the counter value and the denominator (D) represents the value of the private timer.
+            Average                Nx - N0 / D1 - D0
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecMultiTimerInv">
+            <summary> This counter type shows the active time of one or more components as a percentage of the total time of the sample interval. 
+            Counters of this type measure time in 100 nanosecond units. 
+            This counter type is an inverse multitimer. Multitimers are designed to monitor more than one instance of a component, such as a processor or disk. 
+            Inverse counters measure the time that a component is not active and derive its active time from the measurement of inactive time.
+            Generic type           Percentage.
+            Formula                (B - ((N1 - N0) / (D1 - D0))) x 100, where the denominator (D) represents the total elapsed time of the sample interval, the numerator (N) represents the time during the interval when monitored components were inactive, and the variable B represents the number of components being monitored.
+            Average                (B - ((Nx - N0) / (Dx - D0))) x 100
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterRawcountHex">
+            <summary> This counter type shows the most recently observed value, in hexadecimal format. 
+            Generic type           Instantaneous.
+            Formula                None. Shows raw data as collected.
+            Average                SUM (N) / x
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterMultiTimerInv">
+            <summary> This counter type shows the active time of one or more components as a percentage of the total time of the sample interval.
+            This counter type is an inverse multitimer. Multitimers monitor more than one instance of a component, such as a processor or disk.
+            Inverse counters measure the time that a component is not active, and derive the active time from that measurement.
+            This counter differs from <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.Perf100NsecMultiTimerInv"/> in that it measures time in units of ticks of the system performance timer,
+            rather than in 100 nanosecond units.
+            Generic type           Percentage.
+            Formula                (B- ((N1 - N0) / (D1 - D0))) x 100, where the denominator (D) represents the total elapsed time of the sample interval, the numerator (N) represents the time during the interval when monitored components were inactive, and the variable B represents the number of components being monitored.
+            Average                (B- ((Nx - N0) / (Dx - D0))) x 100
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfPrecisionSystemTimer">
+            <summary> This counter is the same as <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterQueuelenType"/> but it requires the monitoring interval to be measured with 100-nanosecond precision.
+            Generic type           Percentage.
+            Formula                (V1 - V0) / (T1 - T0)
+            Average                (V1 - V0) / (T1 - T0)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterQueuelenType">
+            <summary> This counter type is designed to monitor the average length of a queue to a resource over time. 
+            It shows the difference between the queue lengths observed during the last two sample intervals 
+            divided by the duration of the interval. The following table shows the inverse of the timer for multiple but similar items.
+            The counter is used when the objects are not in use.
+            Element	               Value
+            X                      CounterData
+            Y                      PerfTime
+            Time base              PerfFreq
+            Data Size              4 Bytes
+            Display Suffix         No suffix
+            Calculation            (X1-X0)/(Y1-Y0)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterLargeRawcount">
+             <summary> This counter type shows the last observed value only, not an average. 
+            It is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterRawcount"/> counter type,
+            except that it uses larger fields to accommodate larger values.
+            Generic type           Instantaneous.
+            Formula                None. Shows raw data as collected.
+            Average                SUM (N) / x
+             </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterLargeRawcountHex">
+            <summary> This counter type shows the last observed value, in hexadecimal format. 
+            It is the same as the <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterRawcountHex"/> counter type, except that it uses larger fields to accommodate larger values.
+            Generic type           Instantaneous.
+            Formula                None. Shows raw data as collected.
+            Average                SUM (N) / x
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterLargeQueuelenType">
+            <summary>This counter type monitors the average length of a queue to a resource over time. 
+            Counters of this type display the difference between the queue lengths observed during the last two sample intervals, 
+            divided by the duration of the interval. 
+            This counter type is the same as <see cref="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterQueuelenType"/> except that it uses larger fields to accommodate larger values.
+            Generic type            Average
+            Formula                 (N1 - N0) / (D1 - D0), where the numerator (N) represents the number of items in a queue and the denominator (D) represents the time elapsed during the sample interval.
+            Average                 (Nx - N0) / (Dx - D0)
+            Example                 PhysicalDisk\ Avg. Disk Queue Length
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounter100NSQueuelenType">
+            <summary> This counter type measures the queue-length space-time product using a 100-nanosecond time base.
+            Generic type           Rate.
+            Formula                (TB(X1-X0)) / (Y1-Y0), where TB represents the performance frequency time base, the denominator (Y) represents the performance time measurement, and the numerator (X) represents counter data.
+            Average                (TB(X1-X0)) / (Y1-Y0)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Diagnostics.Counters.CounterType.PerfCounterObjTimeQueuelenType">
+            <summary> This counter type measures the queue-length space-time product using an object-specific time base.
+            Generic type           Percentage.
+            Formula                (X1-X0) / (Y1-Y0), where the denominator (Y) represents the performance time measurement, and the numerator (X) represents counter data.
+            Average                (X1-X0) / (Y1-Y0)
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.Extensions.TypeExtensions">
+            <summary> A type extensions. </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Extensions.MemberInfoExtensions">
+            <summary> A member information extensions. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Extensions.MemberInfoExtensions.GetCustomAttributeT``1(System.Reflection.MemberInfo)">
+            <summary>
+            A MemberInfo extension method that helper method that get custom attribute.
+            </summary>
+            <param name="member" type="this MemberInfo"> The member to act on. </param>
+            <returns> The custom attribute helper. </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Reflection.Extensions.AssemblyExtensions">
+            <summary> An assembly extensions. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Reflection.Extensions.AssemblyExtensions.GetManifestFileName(System.Reflection.Assembly)">
+            <summary> An Assembly extension method that gets file name. </summary>
+            <param name="assembly" type="this Assembly"> The assembly to act on. </param>
+            <returns> The file name. </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.Extensions.TypeExtensions">
+            <summary> A type extensions. </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.Extensions.TypeExtensions.GetGuid(System.Type)">
+            <summary> Gets a unique identifier. </summary>
+            <exception cref="T:System.ArgumentException"> Thrown when one or more arguments have unsupported or
+            																		 illegal values. </exception>
+            <param name="eventSourceType" type="Type"> Type of the event source. </param>
+            <returns> The unique identifier. </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.Extensions.TypeExtensions.GetName(System.Type)">
+            <summary> A Type extension method that gets a name. </summary>
+            <param name="eventSourceType" type="this Type"> Type of the event source. </param>
+            <returns> The name. </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.SDILReader.ILInstruction">
+            <summary>
+            Il instruction.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.SDILReader.ILInstruction.GetCode">
+            <summary>
+            Returns a friendly strign representation of this instruction
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.SDILReader.ILInstruction.GetExpandedOffset(System.Int64)">
+            <summary>
+            Add enough zeros to a number as to be represented on 4 characters
+            </summary>
+            <param name="offset">
+            The number that must be represented on 4 characters
+            </param>
+            <returns>
+            </returns>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.SDILReader.ILInstruction.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>
+            The code.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.SDILReader.ILInstruction.Operand">
+            <summary>
+            Gets or sets the operand.
+            </summary>
+            <value>
+            The operand.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.SDILReader.ILInstruction.OperandData">
+            <summary>
+            Gets or sets the information describing the operand.
+            </summary>
+            <value>
+            Information describing the operand.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.SDILReader.ILInstruction.Offset">
+            <summary>
+            Gets or sets the offset.
+            </summary>
+            <value>
+            The offset.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.SDILReader.MethodBodyReader">
+            <summary>
+            Method body reader.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.SDILReader.MethodBodyReader.ConstructInstructions(System.Reflection.MethodInfo)">
+            <summary>
+            Constructs the array of ILInstructions according to the IL byte code.
+            </summary>
+            <exception cref="T:System.Exception"> Thrown when an exception error condition occurs. </exception>
+            <param name="mi"> . </param>
+            <returns>
+            An enumerator that allows foreach to be used to process construct instructions in this
+            collection.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.SDILReader.MethodBodyReader.GetRefferencedOperand(System.Reflection.Module,System.Int32)">
+            <summary>
+            Gets refferenced operand.
+            </summary>
+            <param name="module">				 . </param>
+            <param name="metadataToken"> The metadata token. </param>
+            <returns>
+            The refferenced operand.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.SDILReader.MethodBodyReader.GetBodyCode(System.Collections.Generic.IEnumerable{DevUtils.ETWIMBA.SDILReader.ILInstruction})">
+            <summary>
+            Gets the IL code of the method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.SDILReader.MethodBodyReader.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+            <exception cref="T:System.Exception"> Thrown when an exception error condition occurs. </exception>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIChannelAttribute">
+            <summary>
+            Defines a channel to which providers can log events.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelAttribute.Name">
+            <summary>
+            The name of the channel. The name must be unique within the list of channels that the provider uses. 
+            The convention for naming channels is to append the channel type to the provider's name. For example. 
+            if the provider's name is Company-Product-Component and you are defining an operational channel, 
+            the name would be Company-Product-Component/Operational.
+            Channel names must be less that 255 characters and cannot contain the following characters: 
+            '>', '&lt;', '&amp;', '"', '|', '\', ':', '`', '?', '*', or characters with codes less than 31.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelAttribute.Access">
+            <summary>
+            A Security Descriptor Definition Language (SDDL) access descriptor that controls access to the log file that backs the channel. 
+            If the isolation attribute is set to Application or System, the access descriptor controls read access to the file 
+            (the write permissions are ignored). If the isolation attribute is set to Custom, the access descriptor controls 
+            write access to the channel and read access to the file.
+            </summary>
+            <value>
+            The Security Descriptor Definition Language (SDDL).
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelAttribute.Enabled">
+            <summary>
+            Determines whether the channel is enabled. 
+            The default is false (logging is disabled).
+            Because Debug and Analytic channel types are high volume channels, you should enable the channel only when 
+            investigating an issue with a component that writes to that channel; otherwise, the channel should remain disabled.
+            Each time you enable a Debug and Analytic channel, the service clears the events from the channel.
+            </summary>
+            <value>
+            Set to true to allow logging to the channel; otherwise, false.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelAttribute.Isolation">
+            <summary>
+            The isolation value defines the default access permissions for the channel.
+            </summary>
+            <value>
+            The isolation.
+            The default isolation is Application.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelAttribute.Message">
+            <summary>
+            The localized display name for the channel.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelAttribute.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIChannelImportAttribute">
+            <summary>
+            Identifies a channel that has been defined by another provider or in a manifest that contains a metadata section.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelImportAttribute.Name">
+            <summary>
+            The name of the channel to import.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIChannelIsolation">
+            <summary>
+            The isolation value defines the default access permissions for the channel. You can specify one of the following values:
+            Channels that specify Application isolation use the same ETW session. The same is true for System isolation. 
+            However, if you specify Custom isolation, the service creates a separate ETW session for the channel. 
+            Using Custom isolation lets you control the access permissions for the channel and backing file. 
+            Because there are only 64 ETW sessions available, you should limit your use of Custom isolation.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelIsolation.None">
+            <summary>
+            An enum constant representing the none option.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelIsolation.Application">
+            <summary>
+            The default permissions for Application are (shown using SDDL):
+            "O:BAG:SYD:"
+            "(A;;0xf0007;;;SY)"                local system               (read, write, clear)
+            "(A;;0x7;;;BA)"                    built-in admins            (read, write, clear)
+            "(A;;0x7;;;SO)"                    server operators           (read, write, clear)
+            "(A;;0x3;;;IU)"                    INTERACTIVE LOGON          (read, write)
+            "(A;;0x3;;;SU)"                    SERVICES LOGON             (read, write)
+            "(A;;0x3;;;S-1-5-3)"               BATCH LOGON                (read, write)
+            "(A;;0x3;;;S-1-5-33)"              write restricted service   (read, write)
+            "(A;;0x1;;;S-1-5-32-573)";         event log readers          (read)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelIsolation.System">
+            <summary>
+            The default permissions for System are (shown using SDDL):
+            "O:BAG:SYD:"
+            "(A;;0xf0007;;;SY)"                local system             (read, write, clear)
+            "(A;;0x7;;;BA)"                    built-in admins          (read, write, clear)
+            "(A;;0x3;;;BO)"                    backup operators         (read, write)
+            "(A;;0x5;;;SO)"                    server operators         (read, clear)
+            "(A;;0x1;;;IU)"                    INTERACTIVE LOGON        (read)
+            "(A;;0x3;;;SU)"                    SERVICES LOGON           (read, write)
+            "(A;;0x1;;;S-1-5-3)"               BATCH LOGON              (read)
+            "(A;;0x2;;;S-1-5-33)"              write restricted service (write)
+            "(A;;0x1;;;S-1-5-32-573)";         event log readers        (read)
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelIsolation.Custom">
+            <summary>
+            The default permissions for Custom isolation is the same as Application.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIChannelLoggingAttribute">
+            <summary>
+            Defines the properties of the log file that backs the channel, 
+            such as its capacity and whether it is sequential or circular.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelLoggingAttribute.AutoBackup">
+            <summary>
+            Determines whether to create a new log file when the current log file reaches its maximum size. 
+            Set to true to request that the service create a new file when the log file reaches its maximum size; otherwise, false. 
+            You can set <see cref="P:DevUtils.ETWIMBA.Tracing.EIChannelLoggingAttribute.AutoBackup"/> to true only if retention is set to true. The default is false.
+            </summary>
+            <remarks>
+            You can specify the AutoBackup only for Admin and Operational channel types.
+            </remarks>
+            <value>
+            true if automatic backup, false if not.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelLoggingAttribute.MaxSize">
+            <summary>
+            The maximum size, in bytes, of the log file. The default (and minimum) value is 1 MB. 
+            If the physical log size is less than the configured maximum size and additional space is required in the log to store events, 
+            the service will allocate another block of space even if the resulting physical size of the log will be larger than the configured maximum size. 
+            The service allocates blocks of 1 MB so the physical size could grow to up to 1 MB larger than the configured max size.
+            </summary>
+            <remarks>
+            You can specify the MaxSize for any channel type.
+            </remarks>
+            <value>
+            The size of the maximum.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelLoggingAttribute.Retention">
+            <summary>
+            Determines whether the log file is a sequential or circular log file. 
+            Set to true for a sequential log file and false for a circular log file. 
+            The default is false for Admin and Operational channel types and true for Analytic and Debug channel types.
+            To query a circular log, you must first disable the channel.
+            </summary>
+            <remarks>
+            You can set the retention attribute to false (circular logging) for Admin and Operational channel types. 
+            You can set the retention attribute to false (circular logging) for Analytic and Debug channel types but to view the events in the Windows Event Viewer, 
+            you will need to first disable the channel. Note that when you enable the channel again, the events are removed from the channel.
+            </remarks>
+            <value>
+            true if retention, false if not.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute">
+            <summary>
+            Defines the logging properties for the session that the channel uses.
+            </summary>
+            <remarks>
+            Defines the logging properties for the session that the channel uses. Only Debug and Analytic
+            channels and channels that use Custom isolation can specify logging properties for their
+            session.
+            </remarks>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.BufferSize">
+            <summary>
+            The amount of memory, in kilobytes, to allocate for each buffer. If you expect a relatively low
+            event rate, the buffer size should be set to the memory page size. If the event rate is
+            expected to be relatively high, you should specify a larger buffer size and increase the
+            maximum number of buffers. The buffer size affects the rate at which buffers fill and must be
+            flushed. Although a small buffer size requires less memory, it increases the rate at which
+            buffers must be flushed. The default buffer size for Analytic and Debug channels is 4 KB and
+            for Admin and Operational it is 64 KB.
+            </summary>
+            <value>
+            The size of the buffer.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.FileMax">
+            <summary>
+            The maximum number of times that you want the service to create a new log file when the channel
+            is enabled (includes when the computer is restarted). If the value is 0 or 1, the service will
+            overwrite the log file each time the channel is enabled and the previous events will be lost.
+            If the value is greater than 1, the service will create a new log file each time the channel is
+            enabled in order to preserve the events. The default is 1 and the maximum that you can specify
+            is 16. The service appends a three digit decimal number between 0 and fileMax–1 to each file
+            name. For example, filename.etl.xxx, where xxx is the three digit decimal number. The files are
+            located in %windir%\System32\winevt\Logs.
+            </summary>
+            <value>
+            The file maximum.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.Keywords">
+            <summary>
+            A bitmask that determines the category of events that are written to the channel. If the value
+            of keywords attribute is 0, all events that the provider writes are written to the channel;
+            otherwise only events that have defined a keyword that is included in the keywords bitmask are
+            written to the channel. The default is 0. Debug channels that have the controlGuid attribute
+            set must set the keywords attribute to 0xFFFFFFFFFFFFFFFF. The session passes the keywords
+            value to the provider when it enables the provider.
+            </summary>
+            <value>
+            The keywords.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.Latency">
+            <summary>
+            The time to wait before flushing the buffers, in milliseconds. If zero, ETW flushes the buffers
+            as soon as they become full. If nonzero, ETW flushes all buffers that contain events based on
+            the value even if the buffer is not full. Typically, you want to flush buffers only when they
+            become full. Forcing the buffers to flush can increase the file size of the log file with
+            unfilled buffer space. The default value is 1 second for Admin and Operational logs and 5
+            seconds for Analytic and Debug logs.
+            </summary>
+            <value>
+            The latency.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.Level">
+            <summary>
+            The severity level of the events to write to the channel. The service writes events to the
+            channel that have a level value that is less than or equal to the specified value. The default
+            is 0, which means to log events with any level value. The session passes the level value to the
+            provider when it enables the provider.
+            </summary>
+            <value>
+            The level.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.MaxBuffers">
+            <summary>
+            The maximum number of buffers to allocate for the session. Typically, this value is the minimum
+            number of buffers plus twenty. This value must be greater than or equal to the value specified
+            for minBuffers. The default maximum number of buffers for Analytic and Debug channels is 10 KB
+            and for Admin and Operational it is 64 KB.
+            </summary>
+            <value>
+            The maximum buffers.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIChannelPublishingAttribute.MinBuffers">
+            <summary>
+            The minimum number of buffers to allocate for the session. The default is zero.
+            </summary>
+            <value>
+            The minimum buffers.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIChannelType">
+            <summary>
+            Identifies the channel's type. You can specify one of the following types:
+            Analytic and debug channels are disabled by default and should only enabled to determine the cause of an issue. 
+            For example, you would enable the channel, run the scenario that is causing the issue, disable the channel, 
+            and then query the events. Note that enabling the channel clears the channel of existing events. 
+            If the analytic and debug channel uses a circular backing file, you must disable the channel to query its events.
+            All Admin channels use the same ETW session; the same is true for Operational channels. 
+            However, each Analytic and Debug channel uses a separate ETW session, which is another reason to only enable 
+            these channel types when needed (there is a limited number of ETW sessions available).
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelType.Debug">
+            <summary>
+            Debug type channels support events that are used solely by developers to diagnose a problem for debugging.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelType.Admin">
+            <summary>
+            Admin type channels support events that target end users, administrators, and support personnel. 
+            Events written to the Admin channels should have a well-defined solution on which the administrator can act. 
+            An example of an admin event is an event that occurs when an application fails to connect to a printer. 
+            These events are either well-documented or have a message associated with them that gives the reader 
+            direct instructions of what must be done to rectify the problem.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelType.Operational">
+            <summary>
+            Operational type channels support events that are used for analyzing and diagnosing a problem or occurrence. 
+            They can be used to trigger tools or tasks based on the problem or occurrence. 
+            An example of an operational event is an event that occurs when a printer is added or removed from a system.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIChannelType.Analytic">
+            <summary>
+            Analytic type channels support events that are published in high volume. 
+            They describe program operation and indicate problems that cannot be handled by user intervention.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSource">
+            <summary>
+            An ei counter source.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSource.CreateCounterSet``1">
+            <summary> Creates counter set. </summary>
+            <tparam name="T"> Generic type parameter. </tparam>
+            <returns> The new counter set. </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSourceAttribute">
+            <summary>
+            Defines a provider and the counters that it provides.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSourceAttribute.Name">
+            <summary>
+            The name that is used to create the WMI Win32_PerfRawData class name. 
+            If you do not specify a name, "Counters" is used as the name of the class.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Diagnostics.Counters.CounterSourceAttribute.Guid">
+            <summary>
+            String GUID that uniquely identifies the provider in the manifest. The GUID must be unique within the manifest.
+            You need to provide a new GUID only when the version of the application changes (if you support side-by-side installations).
+            </summary>
+            <value>
+            The identifier of the unique.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIEventChannel">
+            <summary>
+            Defines the audience for the event (for example, administrator or developer).
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventChannel.TraceClassic">
+            <summary>
+            Events for Classic ETW tracing.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventChannel.System">
+            <summary>
+            Events for all installed system services.  This channel is secured to applications running under
+            system service accounts or user applications running under local adminstrator privileges.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventChannel.Application">
+            <summary>
+            Events for all user-level applications.  This channel is not secured and open to any applications.
+            Applications which log extensive information should define an application-specific channel.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventChannel.Security">
+            <summary>
+            The Windows Audit Log.  For exclusive use of the Windows Local Security Authority.  User events
+            may appear as audits if supported by the underlying application.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIEventDescriptionAttribute">
+            <summary>
+            Defines detailed event description
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventDescriptionAttribute.Description">
+            <summary>
+            Returns event description
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventDescriptionAttribute.Solution">
+            <summary>
+            Gives a proposal what can be done to fix the defect that is denoted by this
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventDescriptionAttribute.Procedure">
+            <summary>
+            Gives detailed instructions for executing the solution. 
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventDescriptionAttribute.Verification">
+            <summary>
+            Gives instructions to verify that the failure is fixed. 
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIEventLevel">
+            <summary>
+            Levels are used to group events and typically indicate the severity or verbosity of an event.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventLevel.Critical">
+            <summary>
+            Identifies an abnormal exit or termination event.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventLevel.Error">
+            <summary>
+            Identifies a severe error event.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventLevel.Warning">
+            <summary>
+            Identifies a warning event such as an allocation failure.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventLevel.Informational">
+            <summary>
+            Identifies a non-error event such as an entry or exit event.
+            </summary>
+        </member>
+        <member name="F:DevUtils.ETWIMBA.Tracing.EIEventLevel.Verbose">
+            <summary>
+            Identifies a detailed trace event.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventProvider.EncodeObject(System.Object,DevUtils.ETWIMBA.Tracing.EventData*,System.Byte*)">
+            <summary>
+            Encode object.
+            </summary>
+            <param name="data">					  [in,out] The data. </param>
+            <param name="dataDescriptor"> [in,out] If non-null, information describing the data. </param>
+            <param name="dataBuffer">		  [in,out] If non-null, buffer for data data. </param>
+            <returns>
+            .
+            </returns>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIEventSource">
+            <summary>
+            Event source.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.IsEnabled">
+            <summary>
+            Query if this object is enabled.
+            </summary>
+            <returns>
+            true if enabled, false if not.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.IsEnabled(System.Int32)">
+            <summary>
+            Query if this object is enabled.
+            </summary>
+            <param name="eventId"> Identifier for the event. </param>
+            <returns>
+            true if enabled, false if not.
+            </returns>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.#ctor">
+            <summary>
+            Specialised default constructor for use only by derived classes.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.#ctor(System.Boolean)">
+            <summary>
+            Specialised default constructor for use only by derived classes.
+            </summary>
+            <param name="throwOnEventWriteErrors"> true to throw on event write errors. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="args">		 A variable-length parameters list containing arguments. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="args">		 A variable-length parameters list containing arguments. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.String)">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="arg1">		 The first argument. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.String,System.String)">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="arg1">		 The first argument. </param>
+            <param name="arg2">		 The second argument. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="arg1">		 The first argument. </param>
+            <param name="arg2">		 The second argument. </param>
+            <param name="arg3">		 The third argument. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.String,System.Int32)">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="arg1">		 The first argument. </param>
+            <param name="arg2">		 The second argument. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="arg1">		 The first argument. </param>
+            <param name="arg2">		 The second argument. </param>
+            <param name="arg3">		 The third argument. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.String,System.Int64)">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="arg1">		 The first argument. </param>
+            <param name="arg2">		 The second argument. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEventCore(System.Int32,System.Int32,DevUtils.ETWIMBA.Tracing.EventData*)">
+            <summary>
+            Writes an event core.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId">			  Identifier for the event. </param>
+            <param name="eventDataCount"> Number of event data. </param>
+            <param name="data">					  [in,out] If non-null, the data. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.WriteEvent(System.Int32,System.Object[])">
+            <summary>
+            Writes an event.
+            </summary>
+            <exception cref="T:System.Diagnostics.Tracing.EventSourceException"> Thrown when an Event Source error condition occurs. </exception>
+            <param name="eventId"> Identifier for the event. </param>
+            <param name="args">		 A variable-length parameters list containing arguments. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+            resources.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+            resources.
+            </summary>
+            <param name="disposing"> true to release both managed and unmanaged resources; false to
+            												 release only unmanaged resources. </param>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventSource.Finalize">
+            <summary>
+            Finaliser.
+            </summary>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIEventSourceAttribute">
+            <summary>
+            Attribute for event source.
+            </summary>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventSourceAttribute.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventSourceAttribute.Guid">
+            <summary>
+            Gets or sets an unique identifier.
+            </summary>
+            <value>
+            The identifier of the unique.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute">
+            <summary>
+            Attribute for event trace.
+            Defines an event that your provider can write
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="eventId"> The identifier of the event. </param>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.EventId">
+            <summary>
+            Gets or sets the event identifier.
+            </summary>
+            <value>
+            The identifier of the event.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Version">
+            <summary>
+            Gets or sets the version.
+            Version of the event. The version indicates a revision to the event definition. 
+            You can use this member and the Id member to uniquely identify the event within the scope of a provider.
+            </summary>
+            <value>
+            The version.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Channel">
+            <summary>
+            Gets or sets the channel.
+            Defines the audience for the event (for example, administrator or developer).
+            An identifier that identifies the channel to where the event is written. 
+            Specify a channel identifier of one of the channels that you defined or imported. 
+            If the channel does not specify a channel identifier, use the channel's name. 
+            If you do not specify a channel, the event is not written to a channel. 
+            Typically, the only reason not to specify a channel is if you are writing events only to an ETW session. 
+            </summary>
+            <value>
+            The channel.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Level">
+            <summary>
+            Gets or sets the level.
+            Specifies the severity or level of detail included in the event (for example, informational or fatal).
+            The level of verbosity to use when writing the event. 
+            Specify the name of a level that you defined in the manifest or one of the levels defined in the \Include\Winmeta.xml file that is included in the Windows SDK. 
+            If you do not specify a level, the event descriptor will contain a zero for level.
+            </summary>
+            <value>
+            The level.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Opcode">
+            <summary>
+            Gets or sets the opcode.
+            Identifies a step in a sequence of operations being performed within the Task.
+            The name of an opcode that identifies an operation within the task. 
+            Specify the name of an opcode that you defined in the manifest or one of the opcodes defined in Winmeta.xml. 
+            If the task that you reference contains task-specific (local) opcodes, you can specify one of its 
+            task-specific opcodes or an opcode defined at the provider level (a global opcode). 
+            If you specify a global opcode, the value of the global opcode cannot be the same as one of the local opcodes for the task.
+            If you reference a local opcode, the task attribute must reference the task to which the local opcode belongs.
+            If you do not specify an opcode, the event descriptor will contain a zero for opcode.
+            </summary>
+            <value>
+            The opcode.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Task">
+            <summary>
+            Gets or sets the task.
+            Identifies a larger unit of work within an application or component (is broader than the Opcode).
+            The name of a task that identifies the component or subcomponent that generates this event. 
+            If you do not specify a task, the event descriptor will contain a zero for task.
+            </summary>
+            <value>
+            The task.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Keywords">
+            <summary>
+            Gets or sets the keywords.
+            Bitmask that specifies a logical group of related events. Each bit corresponds to one group. 
+            An event may belong to one or more groups. 
+            The keyword can contain one or more provider-defined keywords, standard keywords, or both.
+            If you do not specify keywords, the event descriptor will contain a zero for keywords.
+            </summary>
+            <value>
+            The keywords.
+            </value>
+        </member>
+        <member name="P:DevUtils.ETWIMBA.Tracing.EIEventTraceAttribute.Message">
+            <summary>
+            Gets or sets the message.
+            The localized message for the event. The message string references a localized string in the stringTable section of the manifest.
+            You must specify a message if the channel type to which the event is written is Admin.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EIValidateException">
+            <summary>
+            Exception for signalling ei validate errors.
+            </summary>
+        </member>
+        <member name="M:DevUtils.ETWIMBA.Tracing.EIValidateException.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="message"> The message. </param>
+        </member>
+        <member name="T:DevUtils.ETWIMBA.Tracing.EventData">
+            <summary>
+            Event data.
+            </summary>
+        </member>
+    </members>
+</doc>

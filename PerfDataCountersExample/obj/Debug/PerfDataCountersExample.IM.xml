@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<instrumentationManifest xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events" xmlns="http://schemas.microsoft.com/win/2004/08/events">
+	<instrumentation>
+		<events>
+			<provider name="PerfDataCountersExample-Tracing-MyEIEventSource" guid="{be947b90-8fbd-55ce-a211-5a20b77922db}" symbol="PerfDataCountersExample_Tracing_MyEIEventSource" resourceFileName="PerfDataCountersExample.IM.dll" messageFileName="PerfDataCountersExample.IM.dll">
+				<channels>
+					<channel name="PerfDataCountersExample-Tracing-MyEIEventSource/MyChannel" type="Debug" chid="c16" value="16" />
+					<channel name="PerfDataCountersExample-Tracing-MyEIEventSource/MyChannel2" type="Debug" chid="c17" value="17">
+						<logging>
+							<retention>true</retention>
+						</logging>
+					</channel>
+					<importChannel name="Application" chid="c9" />
+				</channels>
+				<levels>
+					<level name="MyLevel" value="16" />
+				</levels>
+				<tasks>
+					<task name="MyTask" value="1" />
+				</tasks>
+				<opcodes>
+					<opcode name="MyOpcode" message="$(string.s0001)" value="11" />
+				</opcodes>
+				<keywords>
+					<keyword name="MyKeyword1" message="$(string.s0002)" mask="0x100" />
+					<keyword name="MyKeyword2" message="$(string.s0003)" mask="0x200" />
+				</keywords>
+				<events>
+					<event value="1" version="0" level="win:Informational" template="Event1Args" message="$(string.s0004)" channel="c16" />
+					<event value="2" version="0" level="MyLevel" template="Event2Args" channel="c17" keywords="MyKeyword1 MyKeyword2" opcode="MyOpcode" task="MyTask" />
+					<event value="3" version="0" level="win:Informational" template="Event3Args" message="$(string.s0005)" channel="c9" />
+				</events>
+				<templates>
+					<template tid="Event1Args">
+						<data name="param" inType="win:UnicodeString" />
+					</template>
+					<template tid="Event2Args" />
+					<template tid="Event3Args" />
+				</templates>
+			</provider>
+		</events>
+		<counters schemaVersion="1.1" xmlns="http://schemas.microsoft.com/win/2005/12/counters">
+			<provider providerGuid="{ab8e1320-965a-4cf9-9c07-fe25378c2a23}" symbol="PerfDataCountersExample_Diagnostics_Counters_MyCounterSource" applicationIdentity="PerfDataCountersExample.IM.dll">
+				<counterSet name="NGIT_SignalR" uri="PerfDataCountersExample.Diagnostics.Counters.MyCounterSource+MyCounterObjectsSet" description="counteri kreirani za potrebe SignalR testiranja" instances="multiple" guid="{3c3460a5-d28a-5982-8622-214d07c8d7d2}" symbol="NGIT_SignalR">
+					<counter uri="PerfDataCountersExample.Diagnostics.Counters.MyCounterSource+MyCounterObjectsSet.MessagesSentTotal" type="perf_counter_large_rawcount" id="1" detailLevel="standard" name="Total messages sent" description="ukupan broj uspjesno poslanih paketa" />
+					<counter uri="PerfDataCountersExample.Diagnostics.Counters.MyCounterSource+MyCounterObjectsSet.MessagesPerSec" type="perf_counter_large_rawcount" id="2" detailLevel="standard" name="Messages Per Sec" description="broj poruka u sekundi" />
+				</counterSet>
+			</provider>
+		</counters>
+	</instrumentation>
+	<localization>
+		<resources culture="en-us">
+			<stringTable>
+				<string id="s0001" value="MyOpcode" />
+				<string id="s0002" value="MyKeyword1" />
+				<string id="s0003" value="MyKeyword2" />
+				<string id="s0004" value="Event1 sample param %1" />
+				<string id="s0005" value="Event3" />
+			</stringTable>
+		</resources>
+	</localization>
+</instrumentationManifest>

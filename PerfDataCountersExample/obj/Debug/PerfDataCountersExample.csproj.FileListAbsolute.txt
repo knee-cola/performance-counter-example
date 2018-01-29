@@ -1,0 +1,10 @@
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\PerfDataCountersExample.dll.config
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\PerfDataCountersExample.dll
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\PerfDataCountersExample.pdb
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\DevUtils.ETWIMBA.dll
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\DevUtils.ETWIMBA.xml
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\obj\Debug\PerfDataCountersExample.dll
+c:\users\nikola\documents\visual studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\obj\Debug\PerfDataCountersExample.pdb
+C:\Users\nikola\Documents\Visual Studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\obj\Debug\PerfDataCountersExample.IM.dll
+C:\Users\nikola\Documents\Visual Studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\PerfDataCountersExample.IM.xml
+C:\Users\nikola\Documents\Visual Studio 2013\Projects\PerfDataCountersExample\PerfDataCountersExample\bin\PerfDataCountersExample.IM.dll
